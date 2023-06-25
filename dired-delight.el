@@ -3,7 +3,12 @@
 ;; Copyright (C) 2023  Karthik Chikmagalur
 
 ;; Author: Karthik Chikmagalur <karthikchikmagalur@gmail.com>
+;; Version: 0.1.0
+;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: multimedia, files
+;; URL: https://github.com/karthink/dired-delight
+
+;; SPDX-License-Identifier: GPL-3.0-or-later
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
