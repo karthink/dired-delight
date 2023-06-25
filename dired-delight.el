@@ -97,6 +97,7 @@ By default files are identified by their absolute path."
                   (symbol-name dired-delight-display)))
   "Function used for applying Delight colors.")
 
+;;;###autoload
 (define-minor-mode dired-delight-mode
   "Tag files with colors in Dired."
   :lighter " :D"
