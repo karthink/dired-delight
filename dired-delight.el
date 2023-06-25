@@ -150,7 +150,9 @@ You can mark files in Dired and color all of them."
         (remhash name dired-delight--color-table))
     (dolist (name filenames)
       (puthash name color dired-delight--color-table)
-      (cl-pushnew name (gethash color dired-delight--color-groups)))))
+      (cl-pushnew name (gethash color dired-delight--color-groups))))
+  (dired-delight--apply)
+  (dired-unmark-all-marks))
 
 (defun dired-delight--apply (&optional start end)
   "Display Delights (colors) from START to END."
@@ -181,11 +183,6 @@ You can mark files in Dired and color all of them."
     (completing-read "Mark files matching color: "
                      (hash-table-keys dired-delight--color-groups)
                      nil t)))
-  ;; (save-excursion
-  ;;   (goto-char (point-min))
-  ;;   (while (text-property-search-forward 'dired-delight color)
-  ;;     (forward-line 0)
-  ;;     (dired-mark 1)))
   (let ((relative-names
          (and dired-delight-use-relative-names 'no-dir)))
     (dired-mark-if
