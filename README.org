@@ -46,7 +46,7 @@ Clone this repo or download its files and run =M-x package-install-file= on the 
 *** Usage
 
 1. Turn on =dired-delight-mode= in a Dired buffer.
-2. Mark files (or not for a single file) and call =dired-delight= to tag marked files.
+2. Mark files (or not for a single file) and call =dired-delight= to tag marked files.  To remove a tag don't supply any color, i.e. leave it blank.
 3. Call =dired-delight-mark-color= to mark all files that have a given color.  You can then narrow the buffer to these files, or act on them in any of the usual ways.
 
 The following keybindings may help:
