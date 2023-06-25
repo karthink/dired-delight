@@ -6,7 +6,7 @@ Dired Delight lets you tag files in Dired, Emacs' file manager, with colors.
 
 [[https://github-production-user-asset-6210df.s3.amazonaws.com/8607532/248538359-317649f7-6e0c-40df-b74e-3dc381119ed8.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230625%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230625T074401Z&X-Amz-Expires=300&X-Amz-Signature=996a68a421789a2d8629e30a2f1e03e6db68e3b8261b0531dd783b3674fae67e&X-Amz-SignedHeaders=host&actor_id=8607532&key_id=0&repo_id=658229822]]
 
-This affords a visual way -- besides the filesystem tree -- to group files, or persistently mark files needing action, etc... I think?  (Honestly I'm not sure.)
+This affords a visual way -- besides the filesystem tree -- to group files, or persistently mark files needing action, find a specific file at a glance, etc... I think?  (Honestly I'm not sure.)
 
 *** Features
 
