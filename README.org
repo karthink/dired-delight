@@ -1,0 +1,64 @@
+#+title: dired-delight: Colorful, persistent tags for files
+
+Dired Delight lets you tag files in Dired, Emacs' file manager, with colors.
+
+# [[https://github.com/karthink/dired-delight/assets/8607532/317649f7-6e0c-40df-b74e-3dc381119ed8]]
+
+[[https://github-production-user-asset-6210df.s3.amazonaws.com/8607532/248538359-317649f7-6e0c-40df-b74e-3dc381119ed8.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230625%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230625T074401Z&X-Amz-Expires=300&X-Amz-Signature=996a68a421789a2d8629e30a2f1e03e6db68e3b8261b0531dd783b3674fae67e&X-Amz-SignedHeaders=host&actor_id=8607532&key_id=0&repo_id=658229822]]
+
+This affords a visual way -- besides the filesystem tree -- to group files, or persistently mark files needing action, etc... I think?  (Honestly I'm not sure.)
+
+*** Features
+
+- There are two supported styles for marking:
+
+[[https://github-production-user-asset-6210df.s3.amazonaws.com/8607532/248537151-9523c17c-8c80-41aa-8585-38c4b8f94e78.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230625%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230625T074423Z&X-Amz-Expires=300&X-Amz-Signature=87bbee8d45bd25b62800aacb081f2f296bee0b1fa3474884dd142077ec4d5e1f&X-Amz-SignedHeaders=host&actor_id=8607532&key_id=0&repo_id=658229822]]
+
+# [[https://github.com/karthink/dired-delight/assets/8607532/9523c17c-8c80-41aa-8585-38c4b8f94e78]]
+
+A block next to the file name (left), or highlighting (right).  Both styles work with and without =dired-hide-details-mode=.
+
+- Select colors with preview for marking:
+
+[[https://github-production-user-asset-6210df.s3.amazonaws.com/8607532/248538761-c0df5600-d0d2-495f-901f-5d44a063caeb.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20230625%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20230625T075119Z&X-Amz-Expires=300&X-Amz-Signature=80da30b47e6e5064e69f56b990a508b2edf23f97c6e43d7fcb06e95fde4a22bb&X-Amz-SignedHeaders=host&actor_id=8607532&key_id=0&repo_id=658229822]]
+
+# [[https://github.com/karthink/dired-delight/assets/8607532/c0df5600-d0d2-495f-901f-5d44a063caeb]]
+
+- Works fine with [[https://github.com/alexluigit/dirvish/][Dirvish]]
+
+*** Installation
+
+**** Manual
+
+Clone this repo or download its files and run =M-x package-install-file= on the directory.
+
+**** Straight
+
+#+begin_src emacs-lisp
+(use-package dired-delight
+  :straight (:host github :repo "karthink/dired-delight")
+  :hook (dired-mode . dired-delight-mode)
+  :bind (:map dired-mode-map
+         ("@" . dired-delight)
+         ("*c" . dired-delight-mark-color)))
+#+end_src
+
+*** Usage
+
+1. Turn on =dired-delight-mode= in a Dired buffer.
+2. Mark files (or not for a single file) and call =dired-delight= to tag marked files.
+3. Call =dired-delight-mark-color= to mark all files that have a given color.  You can then narrow the buffer to these files, or act on them in any of the usual ways.
+
+The following keybindings may help:
+#+begin_src emacs-lisp
+(define-key dired-mode-map (kbd "@") 'dired-delight)
+(define-key dired-mode-map (kbd "*c") 'dired-delight-mark-color)
+#+end_src
+
+*** Customization
+
+| Option                           | Description                                        | Default                 |
+|----------------------------------+----------------------------------------------------+-------------------------|
+| =dired-delight-display=            | Set color display style (block or background)      | Block                   |
+| =dired-delight-use-relative-names= | Match files by relative names, not absolute paths. | Absolute paths          |
+| =dired-delight-file=               | File used to persist Delight data across sessions  | =XDG_CACHE_DIR= or =user-emacs-directory= |
