@@ -145,16 +145,18 @@ You can mark files in Dired and color all of them."
                      (completing-read
                       "Set color for files (name or hex code #aabb11):"
                       (list-colors-duplicates (defined-colors)))))
-  (if (equal color "")
-      (dolist (name filenames)
-        (when-let ((old-color (gethash name dired-delight--color-table)))
-          (puthash old-color
-                   (cl-remove
-                    name (gethash color dired-delight--color-groups)
-                    :test #'equal)
-                   dired-delight--color-groups))
-        (remhash name dired-delight--color-table))
-    (dolist (name filenames)
+  (dolist (name filenames)
+    (if-let ((old-color (gethash name dired-delight--color-table)))
+      (unless (equal color old-color)
+        (puthash old-color
+                 (cl-remove
+                  name (gethash old-color dired-delight--color-groups)
+                  :test #'equal)
+                 dired-delight--color-groups)
+        (if (equal color "")
+            (remhash name dired-delight--color-table)
+          (puthash name color dired-delight--color-table)
+          (cl-pushnew name (gethash color dired-delight--color-groups))))
       (puthash name color dired-delight--color-table)
       (cl-pushnew name (gethash color dired-delight--color-groups))))
   (dired-delight--apply)
