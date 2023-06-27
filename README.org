@@ -43,6 +43,20 @@ Clone this repo or download its files and run =M-x package-install-file= on the 
          ("*c" . dired-delight-mark-color)))
 #+end_src
 
+**** Quelpa
+
+#+BEGIN_SRC elisp
+(package-install 'quelpa-use-package)
+(require 'quelpa-use-package)
+
+(use-package dired-delight
+  :quelpa (dired-delight :fetcher github :repo "karthink/dired-delight")
+  :hook (dired-mode . dired-delight-mode)
+  :bind (:map dired-mode-map
+         ("@" . dired-delight)
+         ("*c" . dired-delight-mark-color)))
+#+END_SRC
+
 *** Usage
 
 1. Turn on =dired-delight-mode= in a Dired buffer.
