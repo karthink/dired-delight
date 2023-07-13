@@ -123,7 +123,10 @@ By default files are identified by their absolute path."
     (add-hook 'kill-emacs-hook #'dired-delight--save)
     ;; (add-hook 'window-state-change-hook #'dired-delight--schedule nil t)
     (add-hook 'window-scroll-functions #'dired-delight--handle-scroll nil t)
-    (dired-delight--schedule (window-start) (window-end))
+    ;; Potential fix for #4: Apply colors only after `dired-mode-hook' runs
+    (run-with-timer 0 nil
+                    (lambda ()
+                      (dired-delight--schedule (window-start) (window-end))))
     (jit-lock-register #'dired-delight--schedule))
    (t (dired-delight--clear)
       (dired-delight--save)
